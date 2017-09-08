@@ -1,14 +1,51 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar color="danger">
+    <ion-buttons start>
+      <button [hidden]="!isWomanRequested" (click)="cancelWomanTaxi">
+        <ion-icon name="arrow-back"></ion-icon> Cancelar
+      </button>
+    </ion-buttons>
     <ion-title>
-      Ionic Blank
+      <span [hidden]="isWomanRequested">Woman Taxi</span>
+      <span [hidden]="!isWomanRequested">A Caminho...</span>
     </ion-title>
   </ion-navbar>
+  <ion-buttons end>
+      <button ion-button icon-only>
+        <ion-icon name="navigate"></ion-icon>
+      </button>
+    </ion-buttons>
 </ion-header>
 
-<ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+<ion-content class="home">
+  <div id="map">
+  </div>
+
+  <div class="bottom request-controls">
+    <ion-row>
+      <ion-col width-50>
+        <button ion-button block light>
+          <ion-icon name="card"></ion-icon>
+          Visa **34
+        </button>
+      </ion-col>
+      <ion-col width-50>
+        <button ion-button block light>
+          <ion-icon name="cash"></ion-icon>
+           DINHEIRO
+        </button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <button [hidden]="isWomanRequested" ion-button block primary (click)="confirmWomanTaxi()">Solicitar WomanTaxi</button>
+        <button [hidden]="!isWomanRequested" ion-button block secondary (click)="cancelWomanTaxi()">Cancelar WomanTaxi</button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        WOMAN TAXI ESTA HÁ APROXIMADAMENTE 5MIN
+      </ion-col>
+    </ion-row>
+  </div>
 </ion-content>
